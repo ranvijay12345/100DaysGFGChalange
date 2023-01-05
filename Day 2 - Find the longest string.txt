@@ -1,0 +1,38 @@
+class Solution
+{
+public:
+    string longestString(vector<string> &words)
+    {
+        
+        
+        unordered_set<string> s;
+        for(auto x: words){
+            s.insert(x);
+        }
+        
+        bool isValid;
+        string ans = "";
+        for(auto word : words){
+            isValid = true;
+            for(int i = 1; i<=word.size() and isValid;i++){
+                if(s.find(word.substr(0, i))==s.end()){
+                    isValid = false;
+                }
+            }
+            
+            if(isValid){
+                if(ans.length() < word.length()){
+                    ans = word;
+                }else if(ans.size() == word.size()){
+                    if(ans>word) {
+                        ans = word;
+                        
+                    }
+                }
+            }
+        }
+        return ans;
+        
+        
+    }
+};
